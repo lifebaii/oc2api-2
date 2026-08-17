@@ -28,7 +28,7 @@ docker compose up -d
 
 ## Serverless 部署
 
-本地/Docker 部署出口 IP 固定，建议部署到阿里云函数计算、腾讯云函数 等 Serverless 环境实现多出口 IP 轮询，规避速率限制。
+本地/Docker 部署出口 IP 固定，建议部署到阿里云函数计算、腾讯云函数 等 Serverless 环境实现多出口 IP 轮询，规避 IP 限制。
 
 ```bash
 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -trimpath -o main main.go
@@ -40,17 +40,4 @@ GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -trimpath -o main main.go
 
 ## API
 
-兼容 OpenAI API 格式，路径均支持带 `/v1` 前缀或不带：
-
-| 路径                                           | 方法   | 说明                            |
-|----------------------------------------------|------|-------------------------------|
-| `/v1/chat/completions` 或 `/chat/completions` | POST | Chat 补全（支持 `stream: true` 流式） |
-| `/v1/models` 或 `/models`                     | GET  | 模型列表                          |
-| `/health`                                    | GET  | 健康检查                          |
-| `/ip`                                        | GET  | 查询出口 IP                       |
-
-携带 API Key（如已配置）：
-
-```
-Authorization: Bearer <api-key>
-```
+接口与父项目完全一致，详见 [父项目 README](https://github.com/zhuweiyou/oc2api/#api)。
